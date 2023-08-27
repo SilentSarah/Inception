@@ -1,0 +1,1 @@
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout hmeftah.42.fr.key -out hmeftah.42.fr.crt -subj "/C=MA/O=42/OU=1337 Inception/CN=hmeftah.42.fr"

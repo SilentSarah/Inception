@@ -1,0 +1,132 @@
+version: '3'
+services:
+  nginx:
+    build:
+      context: nginx
+      args:
+        - DOMAIN_NAME=${DOMAIN_NAME}
+    container_name: nginx
+    ports:
+      - "443:443"
+      - "80:80"
+    networks:
+      - MainNetworkDevice
+    restart: on-failure
+    volumes:
+      - WP:/var/www/html
+      - BONUS:/var/www/banana
+      - BONUS_2:/var/www/html/adminer
+    depends_on:
+      - wordpress
+      - adminer
+
+  mariadb:
+    build:
+      context: mariadb
+      args:
+        - MYSQL_ROOT=${MYSQL_ROOT}
+        - MYSQL_ROOT_PASS=${MYSQL_ROOT_PASS}
+        - WP_USER=${WP_USER}
+        - WP_PASS=${WP_PASS}
+        - WP_DB=${WP_DB}
+    container_name: mariadb
+    expose:
+      - 3306
+    networks:
+      - MainNetworkDevice
+    volumes:
+      - DB:/var/lib/mysql:rw
+    restart: on-failure
+    
+  wordpress:
+    build:
+      context: wordpress
+      args:
+        - MYSQL_ROOT=${MYSQL_ROOT}
+        - MYSQL_ROOT_PASS=${MYSQL_ROOT_PASS}
+        - WP_USER=${WP_USER}
+        - WP_PASS=${WP_PASS}
+        - WP_DB=${WP_DB}
+        - WP_HOST=mariadb
+        - WP_ADM=${WP_ADM}
+        - WP_ADM_SEC=${WP_ADM_SEC}
+        - WP_ADM_PASS=${WP_ADM_PASS}
+        - WP_ADM_SEC_PASS=${WP_ADM_SEC_PASS}
+    container_name: wordpress
+    expose:
+      - 9000
+    networks:
+      - MainNetworkDevice
+    volumes:
+      - WP:/var/www/html
+    restart: on-failure
+    depends_on:
+      - mariadb
+      - redis
+  
+  vsftpd:
+    build:
+      context: bonus/vsftpd
+      args:
+        - FTP_USER=${FTP_USER}
+        - FTP_PASS=${FTP_PASS}
+    container_name: vsftpd
+    ports:
+      - "21:21"
+    networks:
+      - MainNetworkDevice
+    volumes:
+      - WP:/var/www/html
+    restart: on-failure
+    
+  adminer:
+    build:
+      context: bonus/adminer
+    container_name: adminer
+    expose:
+      - 9000
+    networks:
+      - MainNetworkDevice
+    volumes:
+      - BONUS_2:/var/www/html/adminer
+    restart: on-failure
+
+  redis:
+    build: 
+      context: bonus/redis
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - MainNetworkDevice
+    restart: on-failure
+    depends_on:
+      - mariadb
+
+
+
+networks:
+  MainNetworkDevice:
+    driver: bridge
+  
+volumes:
+  DB:
+    driver_opts:
+      type: none
+      device: /home/hmeftah/Data/DB
+      o: bind
+  WP:
+    driver_opts:
+      type: none
+      device: /home/hmeftah/Data/WP
+      o: bind
+  BONUS:
+    driver_opts:
+      type: none
+      device: /home/hmeftah/Data/BONUS
+      o: bind
+  BONUS_2:
+    driver_opts:
+      type: none
+      device: /home/hmeftah/Data/Adminer
+      o: bind 
