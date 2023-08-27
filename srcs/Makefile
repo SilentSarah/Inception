@@ -1,14 +1,26 @@
-CONTAINERS = nginx mariadb wordpress redis vsftpd adminer node-red
-up:
-	docker-compose -f requirements/docker-compose.yml up
+CONTAINERS = nginx mariadb wordpress redis vsftpd adminer snake-game
+VOLUMES = $(addprefix /home/hmeftah/Data/, WP DB BONUS Adminer Snake)
+
+up: $(VOLUMES)
+	@docker-compose -f requirements/docker-compose.yml up -d mariadb
+	@docker-compose -f requirements/docker-compose.yml up -d redis
+	@docker-compose -f requirements/docker-compose.yml up -d wordpress
+	@docker-compose -f requirements/docker-compose.yml up -d adminer
+	@docker-compose -f requirements/docker-compose.yml up -d snake-game
+	@docker-compose -f requirements/docker-compose.yml up -d vsftpd
+	@docker-compose -f requirements/docker-compose.yml up -d nginx
+
+$(VOLUMES):
+	@su -c "mkdir $(VOLUMES) hmeftah"
 
 down:
-	docker-compose down
+	@docker-compose -f requirements/docker-compose.yml down
 
-clean:
-	docker system prune -a
+build:
+	@docker-compose -f requirements/docker-compose.yml build 
 
 fclean:
-	docker rmi $(docker images -qa)
-	docker rm $(CONTAINERS)
-	docker network rm -f $(docker network ls -q)
+	@rm -rf $(VOLUMES)
+	@docker system prune -a -f
+	
+re: clean up

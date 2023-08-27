@@ -36,27 +36,18 @@ then
     fi
 
     # Setting up redis cache plugin (BONUS)
+    wp config set WP_REDIS_PORT "6379" --allow-root
+    wp config set WP_REDIS_HOST "redis" --allow-root
     wp plugin is-installed redis-cache --allow-root
     if [ $? -eq 1 ]
     then
         echo "redis-cache plugin is not installed, installing..."
-        wp plugin install redis-cache --force --allow-root
-        cat /var/www/html/wp-config.php | grep WP_REDIS_PORT > /dev/null
-        if [ $? -eq 1 ]
-        then
-            echo "define('WP_REDIS_PORT', 6379);" >> /var/www/html/wp-config.php
-        fi
-        cat /var/www/html/wp-config.php | grep WP_REDIS_HOST > /dev/null
-        if [ $? -eq 1 ]
-        then
-            echo "define('WP_REDIS_HOST', 'redis');" >> /var/www/html/wp-config.php
-        fi
-        wp plugin activate redis-cache --allow-root
+        wp plugin install redis-cache --force --activate --allow-root
         echo "Redis-cache has been installed successfully"
     else
         echo "redis-cache is already installed"
-    sed -i 's/127.0.0.1/redis/g' /var/www/html/wp-content/object-cache.php
     fi
+    #sed -i 's/127.0.0.1/redis/g' /var/www/html/wp-content/object-cache.php
 else
     echo "Database Connection failed."
 fi
