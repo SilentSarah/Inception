@@ -108,7 +108,7 @@ services:
   snake-game:
     build:
       context: bonus/snake
-    container_name: snake
+    container_name: snake-game
     volumes:
       - BONUS_3:/var/www/snake
     expose:
