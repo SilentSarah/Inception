@@ -1,4 +1,4 @@
-CONTAINERS = nginx mariadb wordpress redis vsftpd adminer
+CONTAINERS = nginx mariadb wordpress redis vsftpd adminer node-red
 up:
 	docker-compose -f requirements/docker-compose.yml up
 
@@ -12,4 +12,3 @@ fclean:
 	docker rmi $(docker images -qa)
 	docker rm $(CONTAINERS)
 	docker network rm -f $(docker network ls -q)
-	
