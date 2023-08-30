@@ -125,7 +125,9 @@
 - You can build a docker image using docker compose just by invoking the following command:
 	```bash
 	# WARNING: you have to execute this command in a directory that has a docker-compose.yml file
-	docker-compose build 
+	docker-compose build
+ 	# Otherwise you can specify the directory of docker-compose.yml file.
+	docker-compose build -f /path/to/docker-compose.yml
 	```
 - Command will then build the docker image using all the variables and arguments passed as parameters
 - Once the build has finished you can then run the container using the following command:
