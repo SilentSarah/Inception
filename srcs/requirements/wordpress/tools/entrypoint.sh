@@ -30,7 +30,7 @@ then
         mysql -u ${WP_USER} -p${WP_PASS} -h ${WP_HOST} --database=${WP_DB} -e "TRUNCATE TABLE wp_users;"
         echo "Couldn't find Admins, creating them now."
         wp user create ${WP_ADM} ${WP_ADM}@42.fr --role=administrator --user_pass=${WP_ADM_PASS} --display_name=Sarah --path=/var/www/html --allow-root 
-        wp user create ${WP_ADM_SEC} ${WP_ADM_SEC}@42.fr --role=administrator --user_pass=${WP_ADM_SEC_PASS} --display_name=Sarah --path=/var/www/html --allow-root 
+        wp user create ${WP_ADM_SEC} ${WP_ADM_SEC}@42.fr --role=administrator --user_pass=${WP_ADM_SEC_PASS} --display_name=Hicham --path=/var/www/html --allow-root 
     else
         echo "Found Admins, skipping..."
     fi
