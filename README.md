@@ -1,6 +1,6 @@
 # Inception
 
-This is DevOps project that introduces students to the concept of portable services that run independently **DOCKER!**
+This is DevOps project that introduces students to the concept of portable services that run independently using **DOCKER!**
 
 
 # What is docker?
