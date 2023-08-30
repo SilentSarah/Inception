@@ -2,7 +2,7 @@ version: '3'
 services:
   nginx:
     build:
-      context: nginx
+      context: requirements/nginx
       args:
         - DOMAIN_NAME=${DOMAIN_NAME}
     container_name: nginx
@@ -24,7 +24,7 @@ services:
 
   mariadb:
     build:
-      context: mariadb
+      context: requirements/mariadb
       args:
         - MYSQL_ROOT=${MYSQL_ROOT}
         - MYSQL_ROOT_PASS=${MYSQL_ROOT_PASS}
@@ -42,7 +42,7 @@ services:
     
   wordpress:
     build:
-      context: wordpress
+      context: requirements/wordpress
       args:
         - MYSQL_ROOT=${MYSQL_ROOT}
         - MYSQL_ROOT_PASS=${MYSQL_ROOT_PASS}
@@ -68,7 +68,7 @@ services:
   
   vsftpd:
     build:
-      context: bonus/vsftpd
+      context: requirements/bonus/vsftpd
       args:
         - FTP_USER=${FTP_USER}
         - FTP_PASS=${FTP_PASS}
@@ -83,7 +83,7 @@ services:
     
   adminer:
     build:
-      context: bonus/adminer
+      context: requirements/bonus/adminer
     container_name: adminer
     expose:
       - 9000
@@ -95,7 +95,7 @@ services:
 
   redis:
     build: 
-      context: bonus/redis
+      context: requirements/bonus/redis
     container_name: redis
     ports:
       - "6379:6379"
@@ -107,7 +107,7 @@ services:
 
   snake-game:
     build:
-      context: bonus/snake
+      context: requirements/bonus/snake
     container_name: snake-game
     volumes:
       - BONUS_3:/var/www/snake
