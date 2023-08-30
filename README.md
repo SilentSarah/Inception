@@ -47,8 +47,10 @@
 
 - Docker Network gives containers the ability to communicate with each other with restricted access from outside (Host OS, Internet).
 - Two Important Network types are **Bridge/User Defined Bridge** & **Host** .
-- **Bridge**: Creates a common **Gateway** and preforms **Automatic Aubnetting** to all containers inside the network, also all containers benefit from **Docker DNS Resolver** which means all containers will be accessible inside the network using their hostnames (Container Name) instead of their IP addresses. 
+- **Bridge**: Creates a common **Gateway** and preforms **Automatic Aubnetting** to all containers inside the network, also all containers benefit from **Docker DNS Resolver** which means all containers will be accessible inside the network using their hostnames (Container Name) instead of their IP addresses.
 - **Host**: In this mode the container will share the network with the host and can be accessible using the host IP address.
+- The following diagram should visualize the difference between these types of networks:
+![Bridge vs Host](https://i.imgur.com/BE6wavU.png)
 - Each mode has it's uses and downsides but in multi web services it's assumed that bridge mode works better than host.
 
 ## Docker Volume
