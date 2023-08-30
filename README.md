@@ -8,7 +8,13 @@
 -  When this image is executed it turns into a **Container** and runs above an engine that controls the flow of data/resources (similar to a hypervisor but not quite) in this case it'll be the **Docker Engine**.
 - Here's a small diagram that shows the structure of docker containers vs a virtual machine:
 ![Containers vs Virtual Machines](https://cloudblogs.microsoft.com/wp-content/uploads/sites/37/2019/07/Demystifying-containers_image1.png)
-- As you can see in the diagram containers lack the basis of any Real/Virtualized System, **OS & Kernel**. All resource management happens between the **Engine** and **Host OS**.
+- As you can see in the diagram. Containers lack the basis of any Real/Virtualized System, **OS & Kernel**. All resource management happens between the **Engine** and **Host OS**.
+
+## Docker Engine?
+- Docker Engine is a tool that allows for seamless management of resources and control of all containers running.
+- The engine consists of a **Daemon** that manages containers and their running state in the background, **Command-Line Interface (CLI)** a user can interact with to pass commands/directives/inspect/remove containers/volumes/networks and finally an **API** that allows for communication between the **CLI** and the **Daemon**
+- Docker Engine controls every aspect of a container from volumes and networks to the innard of a container, this allows for ease of building and deployment of containers without major issues setting in.
+![Docker Engine](https://www.docker.com/wp-content/uploads/2021/10/Docker-Website-2018-Diagrams-071918-V5_a-Docker-Engine-page-first-panel.png)
 
 ## Dockerfile
 
@@ -51,7 +57,7 @@
 - **Host**: In this mode the container will share the network with the host and can be accessible using the host IP address.
 - The following diagram should visualize the difference between these types of networks:
 ![Bridge vs Host](https://i.imgur.com/BE6wavU.png)
-- Each mode has it's uses and downsides but in multi web services it's assumed that bridge mode works better than host.
+- Each mode has it's upsides and downsides but in multi web services it's assumed that bridge mode works better than host.
 - You can run a container with a network attached using the following command:
 	```bash
 	docker run -t CONTAINER_NAME --network=NETWORK_TYPE
@@ -125,7 +131,9 @@
 - You can build a docker image using docker compose just by invoking the following command:
 	```bash
 	# WARNING: you have to execute this command in a directory that has a docker-compose.yml file
-	docker-compose build 
+	docker-compose build
+ 	# Otherwise you can specify the directory of docker-compose.yml file.
+	docker-compose build -f /path/to/docker-compose.yml
 	```
 - Command will then build the docker image using all the variables and arguments passed as parameters
 - Once the build has finished you can then run the container using the following command:
