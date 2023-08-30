@@ -12,7 +12,7 @@
 
 ## Docker Engine?
 - Docker Engine is a tool that allows for seamless management of resources and control of all containers running.
-- The engine consists of a **Daemon** that manages containers and their running state in the background, **Command-Line Interface (CLI)** a user can interact with to pass commands/directives/inspect/remove containers and finally an **API** that allows for communication between the **CLI** and the **Daemon**
+- The engine consists of a **Daemon** that manages containers and their running state in the background, **Command-Line Interface (CLI)** a user can interact with to pass commands/directives/inspect/remove containers/volumes/networks and finally an **API** that allows for communication between the **CLI** and the **Daemon**
 - Docker Engine controls every aspect of a container from volumes and networks to the innard of a container, this allows for ease of building and deployment of containers without major issues setting in.
 ![Docker Engine](https://www.docker.com/wp-content/uploads/2021/10/Docker-Website-2018-Diagrams-071918-V5_a-Docker-Engine-page-first-panel.png)
 
