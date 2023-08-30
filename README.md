@@ -124,7 +124,7 @@
 
 - **volumes:** directive that allows you to mount any volumes your service might need, it can accept both **Anonymous & Named** Volumes.
 
-- **networks:** here you'll be able to create various networks with their types.
+- **networks:** here you'll be able to create various networks and define their types.
 
 - **type:** network type, two of them are mentioned above.
 ****
