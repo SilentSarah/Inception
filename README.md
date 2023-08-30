@@ -118,7 +118,7 @@
 
 - **args:** allows you to pass arguments during build time, example of arguments would be credentials, api keys...etc.
 
-- **expose:** allows you to expose a port inside docker network, all containers connected to said network will be able to access this container during runtime.
+- **expose:** allows you to expose a container port inside docker network, all containers connected to said network will be able to access this container during runtime.
 
 - **networks: (inside services)** here will you put networks your container will be connected to.
 
