@@ -18,7 +18,7 @@
 
 ## Dockerfile
 
-- Dockerfiles consist of several instructions that control how the contained software and it's dependencies will be installed and ran.
+- Dockerfiles consist of several instructions that control how the software and it's dependencies inside will be installed and ran.
 - The following Example will feature the structure and several instructions that are necessary when docker builds the **image**:
 
    ```docker
