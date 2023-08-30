@@ -57,7 +57,7 @@
 - **Host**: In this mode the container will share the network with the host and can be accessible using the host IP address.
 - The following diagram should visualize the difference between these types of networks:
 ![Bridge vs Host](https://i.imgur.com/BE6wavU.png)
-- Each mode has it's uses and downsides but in multi web services it's assumed that bridge mode works better than host.
+- Each mode has it's upsides and downsides but in multi web services it's assumed that bridge mode works better than host.
 - You can run a container with a network attached using the following command:
 	```bash
 	docker run -t CONTAINER_NAME --network=NETWORK_TYPE
