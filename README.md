@@ -18,6 +18,11 @@
    ```docker
    # FROM informs the builder of which base image your custom image will be built on and it's version
   FROM debian:bookworm
+   # ARG takes arguments passed to docker build or you can assign a value to it
+  ARG VAR
+   # ENV creates an environment variable during build and runtime.
+  ENV ENV_VAR=VAR
+  ENV ENV_VAR2=VALUE
   # RUN runs a shell command, here where you might want to install your desired software and it's
   # dependencies
   RUN apt update && apt-get install -y -f mariadb-server
