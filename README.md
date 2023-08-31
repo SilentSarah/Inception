@@ -87,7 +87,7 @@
 - Docker-Compose is a special tool desgined alongside docker to ease the management of multiple containers.
 - Docker-Compose takes directions from a file called **docker-compose.yml**.
 - Inside **docker-compose.yml** file there's instruction on how will docker build and run a container.
-- The following example will feature important instructions that will ease building and deploying containers:
+- The following example will feature important instructions that will ease building and deployment of containers:
 	```docker-compose
 	version: '3'
 	services:
